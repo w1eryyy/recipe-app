@@ -7,7 +7,8 @@ const app:Express = express()
 
 app.use(cors())
 
-app.use('/api',recipesRouter)
+
 app.use(express.json())
+app.use('/api',recipesRouter)
 
 export default app
