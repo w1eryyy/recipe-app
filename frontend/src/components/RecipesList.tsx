@@ -1,5 +1,6 @@
 import { getRecipes} from "../api/api";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface Recipe {
   id: number,
@@ -41,10 +42,12 @@ export default function RecipesList() {
       ) : (
         <ul>
           {recipes.map(recipe => (
-            <li key={recipe.id}>
-              <h2>{recipe.title}</h2>
-              <p>{recipe.content}</p>
-            </li>
+            <Link to={`/recipes/${recipe.id}`}>
+              <li key={recipe.id} className="recipe">
+                <h2>{recipe.title}</h2>
+                <p>{recipe.content}</p>
+              </li>
+            </Link>
           ))}
         </ul>
       )}
