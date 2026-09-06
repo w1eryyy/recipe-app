@@ -1,4 +1,4 @@
-import { error } from "node:console";
+
 import pool from "../db";
 import { Response, Request } from "express";
 
@@ -11,6 +11,17 @@ export const getRecipes = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'server recipes get error' });
   }
 };
+
+export const getRecipesById = async(req:Request,res:Response)=>{
+  try{
+    const {id} = req.params
+    const result = await pool.query('SELECT * FROM recipes WHERE id = $1',[id])
+    res.status(200).json(result.rows[0])
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({error:"server recipes get by id error"})
+  }
+}
 
 export const createRecipe = async (req: Request, res: Response) => {
   try {

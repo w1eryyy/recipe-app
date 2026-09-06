@@ -10,6 +10,8 @@ export default api
 
 export const getRecipes = () => api.get('/recipes')
 
+export const getRecipesById = (id:number) => api.get(`/recipes/${id}`)
+
 export const createRecipe = (title:string,author:string|null,content:string)=>api.post('/recipes',{title,author,content})
 
 export const deleteRecipe = (id:number)=> api.delete(`/recipes/${id}`)
